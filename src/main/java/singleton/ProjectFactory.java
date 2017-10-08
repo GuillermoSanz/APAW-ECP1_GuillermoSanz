@@ -7,7 +7,7 @@ import models.Project;
 
 public final class ProjectFactory {
 
-	private static ProjectFactory projectFactory = null;
+	private static ProjectFactory projectFactory = new ProjectFactory();
 
 	private static Map<Long, Project> projectList;
 
@@ -16,9 +16,6 @@ public final class ProjectFactory {
 	}
 
 	public static ProjectFactory getFactory() {
-		if (projectFactory == null) {
-			projectFactory = new ProjectFactory();
-		}
 		return projectFactory;
 	}
 
