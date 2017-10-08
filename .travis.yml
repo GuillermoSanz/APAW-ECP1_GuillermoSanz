@@ -1,0 +1,19 @@
+language: java
+jdk:
+- oraclejdk8
+branches:
+  only:
+  - master
+  - develop
+notifications:
+  email:
+    recipients:
+    - sanznietoguillermo@gmail.com
+services:
+- mysql
+before_install:
+- mysql -e 'CREATE DATABASE IF NOT EXISTS bd;'
+script:
+- mvn verify --settings settings.xml
+- mvn org.jacoco:jacoco-maven-plugin:prepare-agent verify --settings settings.xml
+- mvn sonar:sonar -Dsonar.organization=guillermosanz-github -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$TOKEN_SONAR --settings settings.xml
